@@ -11,6 +11,5 @@ import com.bumptech.glide.request.RequestOptions
 infix fun ImageView.setImageUrl(url: String) {
     Glide.with(context)
         .load(url)
-        .apply(RequestOptions().override(1440, 1080))
         .into(this)
 }
