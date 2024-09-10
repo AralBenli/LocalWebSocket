@@ -9,7 +9,7 @@
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
@@ -61,6 +61,19 @@
                 android:checked="false"
                 android:text="Status" />
 
+            <Switch
+                android:id="@+id/interactionSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:text="Socket Interaction" />
+
+            <TextView
+                android:id="@+id/socketResponse"
+                android:layout_width="match_parent"
+                android:text = "websocket response from checkbox"
+                android:layout_height="wrap_content"/>
+
         </LinearLayout>
 
 
@@ -73,6 +86,7 @@
             android:layout_marginTop="20dp"
             android:ellipsize="end"
             android:maxLines="4"
+            app:layout_constraintVertical_bias="0.7"
             android:text="WebSocket Messages"
             android:textAlignment="center"
             android:textSize="15sp"

@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         client =  OkHttpClient()
 
-        with(binding){
+        with(binding) {
             connect.setOnClickListener {
                 Log.d("LocalWebSocket", "Connecting...")
                 val request: Request = Request
