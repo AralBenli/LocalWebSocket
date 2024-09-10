@@ -1,8 +1,11 @@
 package com.arl.localwebsocet
 
+import android.content.Context
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.arl.localwebsocet.databinding.ActivityMainBinding
+import com.arl.localwebsocet.model.WebSocketItemResponse
+import com.arl.localwebsocet.ui.adapter.WebSocketItemResponseAdapter
 import okhttp3.Response
 import okhttp3.WebSocket
 import okhttp3.WebSocketListener
@@ -12,15 +15,17 @@ import org.json.JSONObject
  * Created by AralBenli on 9.09.2024.
  */
 class LocalWebSocketListener(
+    private val context: Context,
     private val activity: AppCompatActivity,
-    private val binding: ActivityMainBinding
+    private val binding: ActivityMainBinding,
+    private val messageAdapter: WebSocketItemResponseAdapter
 ) : WebSocketListener() {
 
     private lateinit var webSocket: WebSocket
 
     override fun onOpen(webSocket: WebSocket, response: Response) {
         this.webSocket = webSocket
-        binding.textView.text = "Connected to server"
+        binding.textView.text = context.getString(R.string.connected_to_server)
         Log.e("WebSocket", "Connected to server")
 
         binding.interactionSwitch.setOnCheckedChangeListener { _, isChecked ->
@@ -41,11 +46,8 @@ class LocalWebSocketListener(
                 val title = jsonObject.getString("title")
                 val booleanStatus = jsonObject.getBoolean("booleanStatus")
 
-                binding.tvId.text = "Id: $id"
-                binding.tvDescription.text = "Description: $description"
-                binding.tvTitle.text = "Title: $title"
-                binding.switchStatus.isChecked = booleanStatus
-                binding.ivImage.setImageUrl(imageUrl)
+                val webSocketItem = WebSocketItemResponse(id, description, imageUrl, title, booleanStatus)
+                messageAdapter.submitList(messageAdapter.currentList + webSocketItem)
 
                 Log.d(
                     "WebSocket",
@@ -60,20 +62,24 @@ class LocalWebSocketListener(
 
     override fun onFailure(webSocket: WebSocket, t: Throwable, response: Response?) {
         Log.e("WebSocket", "Connection failed: ${t.message}")
-            binding.textView.text = "Disconnected from server"
-
+        activity.runOnUiThread {
+            binding.textView.text = context.getString(R.string.disconnect_from_server)
+        }
     }
 
     override fun onClosing(webSocket: WebSocket, code: Int, reason: String) {
-        binding.textView.text = "Disconnected from server"
+        activity.runOnUiThread {
+            binding.textView.text = context.getString(R.string.disconnect_from_server)
+        }
         Log.e("WebSocket", "Connection closing: Code $code, Reason $reason")
     }
 
     override fun onClosed(webSocket: WebSocket, code: Int, reason: String) {
-        binding.textView.text = "Disconnected from server"
+        activity.runOnUiThread {
+            binding.textView.text = context.getString(R.string.disconnect_from_server)
+        }
         Log.e("WebSocket", "Connection closed: Code $code, Reason $reason")
     }
-
 
     companion object {
         const val CONNECTION_CONSTANT = 1000

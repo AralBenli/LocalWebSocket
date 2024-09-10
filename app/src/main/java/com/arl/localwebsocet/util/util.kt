@@ -1,8 +1,7 @@
-package com.arl.localwebsocet
+package com.arl.localwebsocet.util
 
 import android.widget.ImageView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 
 /**
  * Created by AralBenli on 10.09.2024.

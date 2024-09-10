@@ -7,75 +7,54 @@
         android:id="@+id/activity_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity">
+        tools:context=".ui.mainactivity.MainActivity">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="16dp">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/userInteractionRoot"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <!-- TextView to display the ID -->
-            <TextView
-                android:id="@+id/tv_id"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:text="ID"
-                android:textSize="16sp" />
-
-            <!-- TextView to display the Title -->
-            <TextView
-                android:id="@+id/tv_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:text="Title"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <!-- TextView to display the Description -->
-            <TextView
-                android:id="@+id/tv_description"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:text="Description"
-                android:textSize="16sp" />
-
-            <!-- ImageView to display the image from the URL -->
-            <ImageView
-                android:id="@+id/iv_image"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                android:layout_gravity="center"
-                android:layout_marginBottom="16dp"
-                android:contentDescription="Image"
-                android:scaleType="centerCrop" />
-
-            <!-- Switch to represent the boolean status -->
-            <Switch
-                android:id="@+id/switch_status"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="false"
-                android:text="Status" />
-
-            <Switch
+            <com.google.android.material.materialswitch.MaterialSwitch
                 android:id="@+id/interactionSwitch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="false"
-                android:text="Socket Interaction" />
+                android:text="@string/socket_interaction"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/itemSize"
+                android:text="@string/item_count_0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/socketResponse"
                 android:layout_width="match_parent"
-                android:text = "websocket response from checkbox"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:text="@string/websocket_response_from_checkbox"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/interactionSwitch" />
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="12dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toTopOf="@id/textView"
+            app:layout_constraintTop_toBottomOf="@+id/userInteractionRoot"
+            tools:layout_editor_absoluteX="0dp"
+            tools:listitem="@layout/websocket_item_list" />
 
         <TextView
             android:id="@+id/textView"
@@ -86,14 +65,15 @@
             android:layout_marginTop="20dp"
             android:ellipsize="end"
             android:maxLines="4"
-            app:layout_constraintVertical_bias="0.7"
-            android:text="WebSocket Messages"
+            android:text="@string/websocket_messages"
             android:textAlignment="center"
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.698" />
 
         <Button
             android:id="@+id/connect"
