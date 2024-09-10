@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">LocalWebSocet</string>
+    <string name="connect_to_websocket">Connect to webSocket</string>
+    <string name="disconnect_from_websocet">Disconnect from webSocet</string>
+</resources>
