@@ -15,6 +15,8 @@ https://github.com/user-attachments/assets/1d48de47-954f-4459-bf92-61355eee5bd0
 
 
 # Node server.js
+
+```javascript
 const WebSocket = require('ws');
 const readline = require('readline');
 
@@ -29,7 +31,7 @@ server.on('connection', socket => {
     const messageString = message.toString();  // Convert buffer to string
     console.log('Received from client:', messageString);
 
-  // Handle checkbox state from client
+    // Handle checkbox state from client
     if (messageString === "true") {
       console.log("Client checked the checkbox (true)");
       socket.send("WebSocket responded: true due to the checkbox state");
@@ -82,7 +84,7 @@ rl.on('line', (input) => {
 
   console.log('Model sent to clients:', modelJson);
 });
-  
+
 console.log('WebSocket server is running on ws://localhost:8080');
 
 
