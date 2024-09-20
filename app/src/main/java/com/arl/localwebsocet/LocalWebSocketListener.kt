@@ -47,8 +47,10 @@ class LocalWebSocketListener(
                 val booleanStatus = jsonObject.getBoolean("booleanStatus")
 
                 val webSocketItem = WebSocketItemResponse(id, description, imageUrl, title, booleanStatus)
-                messageAdapter.submitList(messageAdapter.currentList + webSocketItem)
-
+                val updatedList = listOf(webSocketItem) + messageAdapter.currentList
+                messageAdapter.submitList(updatedList) {
+                    binding.recyclerView.scrollToPosition(0)
+                }
                 Log.d(
                     "WebSocket",
                     "Received model: id=$id, description=$description, imageUrl=$imageUrl, title=$title, booleanStatus=$booleanStatus"

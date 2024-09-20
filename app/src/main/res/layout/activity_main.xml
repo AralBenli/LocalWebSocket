@@ -97,7 +97,7 @@
             android:layout_marginBottom="50dp"
             android:backgroundTint="@color/cardview_dark_background"
             android:padding="10dp"
-            android:text="@string/disconnect_from_websocet"
+            android:text="@string/disconnect_from_websocket"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
