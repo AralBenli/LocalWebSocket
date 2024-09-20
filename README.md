@@ -1,12 +1,18 @@
+
 # LocalWebSocket
 
-With basic node js server tried to create interaction with web socket and kotlin mobile application
+With basic local node js server tried to create interaction with web socket and kotlin mobile application
 
 ## Used Technologies
 - okhttp3.websocket
 
 # Video
-https://github.com/user-attachments/assets/8392a942-4ee6-4654-b985-9f3bda08f98b
+
+
+https://github.com/user-attachments/assets/1d48de47-954f-4459-bf92-61355eee5bd0
+
+
+
 
 # Node server.js
 const WebSocket = require('ws');
