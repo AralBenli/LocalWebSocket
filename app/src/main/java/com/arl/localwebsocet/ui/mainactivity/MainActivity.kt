@@ -1,13 +1,12 @@
 package com.arl.localwebsocet.ui.mainactivity
-
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.arl.localwebsocet.LocalWebSocketListener
 import com.arl.localwebsocet.R
-import com.arl.localwebsocet.ui.adapter.WebSocketItemResponseAdapter
 import com.arl.localwebsocet.databinding.ActivityMainBinding
+import com.arl.localwebsocet.ui.adapter.WebSocketItemResponseAdapter
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.WebSocket
@@ -23,8 +22,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        client =  OkHttpClient()
-
+        client = OkHttpClient()
+        getLink()
         messageAdapter = WebSocketItemResponseAdapter()
 
         binding.recyclerView.adapter = messageAdapter
@@ -47,12 +46,12 @@ class MainActivity : AppCompatActivity() {
 
         with(binding) {
             connect.setOnClickListener {
-                Log.d("LocalWebSocket", "Connecting...")
+                Log.d("LocalWebSocket", "Connecting... $hostUrl")
                 val request: Request = Request
                     .Builder()
-                    .url("ws://10.0.2.2:8080")
+                    .url(hostUrl)
                     .build()
-                val listener = LocalWebSocketListener(this@MainActivity , this@MainActivity , binding ,messageAdapter)
+                val listener = LocalWebSocketListener(this@MainActivity, this@MainActivity, binding, messageAdapter)
                 ws = client.newWebSocket(request, listener)
             }
 
@@ -72,4 +71,20 @@ class MainActivity : AppCompatActivity() {
         super.onDestroy()
         client.dispatcher.executorService.shutdown()
     }
+
+    companion object {
+        var hostUrl: String = ""
+        init {
+            System.loadLibrary("jniConstants")
+        }
+    }
+
+    private external fun getHostUrl(): String
+
+    private fun getLink() {
+        hostUrl = getHostUrl().also {
+            Log.d("hostFromJni", hostUrl)
+        }
+    }
 }
+

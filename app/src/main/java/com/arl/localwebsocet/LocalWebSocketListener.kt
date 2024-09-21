@@ -87,11 +87,3 @@ class LocalWebSocketListener(
         const val CONNECTION_CONSTANT = 1000
     }
 }
-
-
-
-//1 , BEST GAME EVER , https://assets.rockpapershotgun.com/images/2018/10/armor-1212x682.jpg ,  Elder Scrolls Of Skyrim , false
-
-//2 , OPEN WORLD GAME , https://image.api.playstation.com/vulcan/ap/rnd/202211/0711/kh4MUIuMmHlktOHar3lVl6rY.png , Witcher III , true
-
-//3 , FALLOUT IV , https://cdn1.epicgames.com/offer/9c1a74145a9145ec803d7452e80819a0/EGS_Fallout4_BethesdaGameStudios_S1_2560x1440-fb0e82fa71a74e750c95b57b91fc558d , Fallout 4 , true

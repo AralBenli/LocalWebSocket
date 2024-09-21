@@ -5,8 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.arl.localwebsocet.model.WebSocketItemResponse
 import com.arl.localwebsocet.databinding.WebsocketItemListBinding
+import com.arl.localwebsocet.model.WebSocketItemResponse
 import com.arl.localwebsocet.util.setImageUrl
 
 /**
